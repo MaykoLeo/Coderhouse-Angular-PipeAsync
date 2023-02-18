@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Alumno } from '../models/alumno';
 
 @Injectable({
@@ -79,6 +80,15 @@ export class AlumnoService {
       }
     });
   }
+
+  obtenerListaAlumnosObservable(): Observable<Alumno[]> {
+    return new Observable<Alumno[]>((suscriptor) => {
+      suscriptor.next(this.alumnos);
+    });
+  }
+
+
+
   /* obtenerListaAlumnos(): Array<Alumno> {
     return this.alumnos;
   } */

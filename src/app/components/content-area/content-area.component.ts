@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Alumno } from 'src/app/models/alumno';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -6,6 +6,7 @@ import { EditarAlumnoModalComponent } from '../editar-alumno-modal/editar-alumno
 import { BuscarAlumnoPipe } from "src/app/pipes/buscar-alumno.pipe";
 import { usuario } from '../../models/usuario';
 import { AlumnoService } from '../../services/alumno.service';
+import { Subscriber, Subscription } from 'rxjs';
 
 
 
@@ -16,18 +17,25 @@ import { AlumnoService } from '../../services/alumno.service';
 })
 
 
-export class ContentAreaComponent {
+export class ContentAreaComponent implements OnInit, OnDestroy {
   dataSource!: MatTableDataSource<Alumno>;
   columnas: string[] = ['nombre', 'curso', 'comision', 'estado', 'acciones'];
+  suscripcion!: Subscription;
 
   constructor(
     private AlumnoService: AlumnoService
   ) { }
 
   ngOnInit(): void {
-    /* this.dataSource = new MatTableDataSource<Alumno>(this.AlumnoService.obtenerListaAlumnosP()); */
+    this.dataSource = new MatTableDataSource<Alumno>();
+    this.suscripcion = this.AlumnoService.obtenerListaAlumnosObservable().subscribe((alumnos: Alumno[]) => {
+      this.dataSource.data = alumnos;
+    });
   }
 
+  ngOnDestroy() {
+    this.suscripcion.unsubscribe();
+  }
 }
 
 
