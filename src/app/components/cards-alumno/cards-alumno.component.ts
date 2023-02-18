@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from '../../services/alumno.service';
 
@@ -7,15 +7,20 @@ import { AlumnoService } from '../../services/alumno.service';
   templateUrl: './cards-alumno.component.html',
   styleUrls: ['./cards-alumno.component.css']
 })
-export class CardsAlumnoComponent {
+export class CardsAlumnoComponent implements OnInit {
   alumnos!: Alumno[];
 
   constructor(
     private AlumnoService: AlumnoService
-  ) {
-    this.alumnos = AlumnoService.obtenerListaAlumnos();
-  }
+  ) { }
 
+  ngOnInit(): void {
+    this.AlumnoService.obtenerListaAlumnosPromise().then((alumnos: Alumno[]) => {
+      this.alumnos = alumnos;
+    }).catch((error: any) => {
+      console.log('Error en el Promise', error);
+    });
+  }
 
 
 }

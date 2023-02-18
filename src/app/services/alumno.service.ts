@@ -67,7 +67,19 @@ export class AlumnoService {
 
   constructor() { }
 
-  obtenerListaAlumnos(): Array<Alumno> {
-    return this.alumnos;
+  obtenerListaAlumnosPromise(): Promise<Alumno[]> {
+    return new Promise((resolve, reject) => {
+      if (this.alumnos.length > 0) {
+        resolve(this.alumnos);
+      } else {
+        reject({
+          codigo: 0,
+          descripcion: 'Arreglo vacío',
+        });
+      }
+    });
   }
+  /* obtenerListaAlumnos(): Array<Alumno> {
+    return this.alumnos;
+  } */
 }

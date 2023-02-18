@@ -25,7 +25,7 @@ export class ContentAreaComponent {
   ) { }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Alumno>(this.AlumnoService.obtenerListaAlumnos());
+    /* this.dataSource = new MatTableDataSource<Alumno>(this.AlumnoService.obtenerListaAlumnosP()); */
   }
 
 }
