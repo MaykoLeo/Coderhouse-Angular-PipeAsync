@@ -1,12 +1,14 @@
-<div class="row">
+<!-- <div class="row">
     <mat-form-field>
         <mat-label>
             <p>Buscar alumno</p>
         </mat-label>
-        <input type="text" matInput [(ngModel)]="buscar" (input)="applyFilter()" placeholder="Search">
-    </mat-form-field>
-</div>
+        <input type="text" matInput [(ngModel)]="buscar" >
 
+    </mat-form-field>
+</div> -->
+
+<!-- <table mat-table [dataSource]="dataSource"> -->
 <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="nombre">
@@ -37,7 +39,7 @@
     <ng-container matColumnDef="acciones">
         <th class="centrado" mat-header-cell *matHeaderCellDef appLetraTamanio>Acciones</th>
         <td class="centrado" mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" (click)="openModal(element)">
+            <button mat-icon-button color="primary">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button color="warn">

@@ -15,6 +15,7 @@ import { BooleanoATextoPipe } from './pipes/booleano-a-texto.pipe';
 import { LetraTamanioDirective } from './directives/letra-tamanio.directive';
 import { EstadoEstiloDirective } from './directives/estado-estilo.directive';
 import { BuscarAlumnoPipe } from './pipes/buscar-alumno.pipe';
+import { CardsAlumnoComponent } from './components/cards-alumno/cards-alumno.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { BuscarAlumnoPipe } from './pipes/buscar-alumno.pipe';
     LetraTamanioDirective,
     EstadoEstiloDirective,
     BuscarAlumnoPipe,
+    CardsAlumnoComponent,
   ],
   imports: [
     BrowserModule,

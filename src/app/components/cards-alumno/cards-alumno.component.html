@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let alumno of alumnos">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{ alumno.alumno.nombre }}</mat-card-title>
+                    <mat-card-subtitle>{{ alumno.alumno.apellido }}</mat-card-subtitle>
+                </mat-card-header>
+                <img class="card-imagen" mat-card-image src="" alt="">
+                <mat-card-content>
+                    <p>Curso: {{ alumno.curso }}</p>
+                    <p [appEstadoEstilo]="alumno.alumno.estado">{{ alumno.alumno.estado |
+                        booleanoATexto: 'Activo': 'Inactivo' }}</p>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-raised-button color="primary">
+                        Editar
+                    </button>
+                    <button mat-button color="warn">
+                        Eliminar
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
